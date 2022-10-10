@@ -1,0 +1,22 @@
+[
+  {
+    "timestamp": "Thu Aug 18 2022",
+    "title": "Product 3",
+    "code": "XP-3",
+    "description": "Some description for product 3",
+    "price": 30,
+    "stock": 200,
+    "thumbnail": "someUrlProduct3.com",
+    "id": 1
+  },
+  {
+    "timestamp": "Thu Aug 18 2022",
+    "title": "Product 3",
+    "code": "XP-3",
+    "description": "Some description for product 3",
+    "price": 30,
+    "stock": 200,
+    "thumbnail": "someUrlProduct3.com",
+    "id": 2
+  }
+]

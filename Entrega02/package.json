@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "name": "proyecto_final_02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devnodemon": "nodemon ./src/server.js",
+    "dev": "node ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmarcue/CoderBackend-FinalProject02.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "firebase-admin": "^11.0.1",
+    "mongoose": "^6.5.2",
+    "nodemon": "^2.0.19"
+  }
+}
