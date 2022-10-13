@@ -6,6 +6,7 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash'
 import morgan from 'morgan';
+import { engine } from 'express-handlebars';
 
 import { serverConfig } from './configs/server.config.js';
 import { __dirname, __dirJoin } from './utils/helper.util.js';
@@ -46,7 +47,7 @@ app.use(express.static(__dirJoin(__dirname, './files')));
 
 // Ejs
 app.set('views', __dirJoin(__dirname, '../views'));
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 
 // router.
 app.use('/api/productos', productRoute);
