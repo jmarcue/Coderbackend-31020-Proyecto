@@ -4,13 +4,16 @@ import { Server as ServerIO } from 'socket.io';
 import session from 'express-session';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
-import flash from 'connect-flash'
-import morgan from 'morgan';
+//import flash from 'connect-flash'
+//import morgan from 'morgan';
 import { engine } from 'express-handlebars';
 
 import { serverConfig } from './configs/server.config.js';
 import { __dirname, __dirJoin } from './utils/helper.util.js';
-import { __dirname } from './configs/handlebars.config.js';
+import { handlebar } from './configs/handlebars.config.js';
+import { homeRoute } from './routes';
+
+
 
 // Server 
 const app = express();
@@ -37,22 +40,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //app.use(morgan('tiny'));
 //app.use(flash());
-app.use((req, res,next) => {
-    res.locals.user = req.user;
-    res.locals.error = req.flash('error');
-    res.locals.success = req.flash('success');
-    res.locals.welcome = req.flash('welcome');
-    next();});
+//app.use((req, res,next) => {
+//    res.locals.user = req.user;
+//    res.locals.error = req.flash('error');
+//    res.locals.success = req.flash('success');
+//    res.locals.welcome = req.flash('welcome');
+//    next();});
 app.use(express.static(__dirJoin(__dirname, './public')));
 app.use(express.static(__dirJoin(__dirname, './files')));
 
 // hbs
+app.engine('hbs', engine(handlebar));
+app.set('view engine', 'hbs');
 app.set('views', __dirJoin(__dirname, '../views'));
-//app.set('view engine', 'ejs');
 
 // router.
-app.use('/api/productos', productRoute);
-app.use('/api/carrito', cartRoute);
+app.use("/", home);
+//app.use('/api/productos', productRoute);
+//app.use('/api/carrito', cartRoute);
 
 
 // server connection

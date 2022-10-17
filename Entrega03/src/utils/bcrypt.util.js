@@ -1,11 +1,13 @@
 import bcrypt from 'bcryptjs';
 
-const salt = bcrypt.genSaltSync();
-const hash = (password) => {
+//async: genSalt, hash, compare
+const salt = bcrypt.genSaltSync(10);
+
+const hash = async (password) => {
   return bcrypt.hashSync(password, salt);
 };
 
-const unhash = (password, hashedPassword) => {
+const unhash = async (password, hashedPassword) => {
   return bcrypt.compareSync(password, hashedPassword);
 };
 
