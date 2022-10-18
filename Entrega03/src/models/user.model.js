@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import {  hash, unhash } from './utils/bcrypt.util.js';
+import {  hash, unhash } from '../utils/bcrypt.util.js';
 
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({

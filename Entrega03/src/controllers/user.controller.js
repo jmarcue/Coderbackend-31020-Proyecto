@@ -1,4 +1,4 @@
-import { logger } from './utils/winston.util.js';
+import { logger } from '../utils/winston.util.js';
 import userModel from '../models/user.model.js';
 
 class userController {

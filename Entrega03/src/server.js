@@ -1,6 +1,5 @@
 import express from 'express';
-import { Server as serverHttp } from 'http';
-import { Server as ServerIO } from 'socket.io';
+//import { Server as serverHttp } from 'http';
 import session from 'express-session';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
@@ -13,14 +12,12 @@ import { __dirname, __dirJoin } from './utils/helper.util.js';
 import { handlebar } from './configs/handlebars.config.js';
 import { 
   homeRoute
-} from './routes';
+} from './routes/index.js';
 
 
 
 // Server 
 const app = express();
-const http = new serverHttp(app);
-const io = new ServerIO(http);
 const PORT = serverConfig.PORT;
 
 
@@ -63,7 +60,7 @@ app.use("/", homeRoute);
 
 
 // server connection
-const server = http.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Servidor http en puerto: ${server.address().port}`);
 });
 server.on("error", error => console.log(`Error en servidor ${error}`));

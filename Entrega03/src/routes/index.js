@@ -1,4 +1,4 @@
-import homeRoute from './home.router.js';
+import homeRoute from './home.route.js';
 
 export {
   homeRoute
