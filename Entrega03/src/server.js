@@ -3,13 +3,12 @@ import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
-//import flash from 'connect-flash'
-//import morgan from 'morgan';
 import { engine } from 'express-handlebars';
 
 import { serverConfig } from './configs/server.config.js';
-import { __dirname, __dirJoin } from './utils/helper.util.js';
 import { handlebar } from './configs/handlebars.config.js';
+import { __dirname, __dirJoin } from './utils/helper.util.js';
+import { logger } from './utils/winston.util.js';
 import { 
   homeRoute
 } from './routes/index.js';
@@ -22,6 +21,12 @@ const PORT = serverConfig.PORT;
 
 
 // Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(__dirJoin(__dirname, './public')));
+app.use(express.static(__dirJoin(__dirname, './files')));
+
 app.use(cookieParser());
 app.use(session({
     secret: 'secretKey',
@@ -32,21 +37,8 @@ app.use(session({
         maxAge: 60000 // tiempo en milisegundos (10 min = 60000 ms * 10)
     }
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-//app.use(morgan('tiny'));
-//app.use(flash());
-//app.use((req, res,next) => {
-//    res.locals.user = req.user;
-//    res.locals.error = req.flash('error');
-//    res.locals.success = req.flash('success');
-//    res.locals.welcome = req.flash('welcome');
-//    next();});
-app.use(express.static(__dirJoin(__dirname, './public')));
-app.use(express.static(__dirJoin(__dirname, './files')));
 
 // hbs
 app.engine('hbs', engine(handlebar));
@@ -61,6 +53,6 @@ app.use("/", homeRoute);
 
 // server connection
 const server = app.listen(PORT, () => {
-  console.log(`Servidor http en puerto: ${server.address().port}`);
+  logger.info.info(`Servidor http en puerto: ${server.address().port}`);
 });
-server.on("error", error => console.log(`Error en servidor ${error}`));
+server.on("error", error => logger.info.error(`Error en servidor ${error}`));

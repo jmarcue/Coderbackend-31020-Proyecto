@@ -1,10 +1,10 @@
 import express from 'express';
 import homeController from '../controllers/home.controller.js';
 
-const homeRoute = express.Router();
+const router = express.Router();
 const home = new homeController();
 
-homeRoute.get('/', home.getData);
+router.get('/', home.getData);
 
 
-export default homeRoute;
+export default router;

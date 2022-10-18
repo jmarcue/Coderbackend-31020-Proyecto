@@ -19,56 +19,20 @@
     <div class="jumbotron flex-fill mr-1">
       <h1>Sign-Up.</h1>
       <form action="/signup" method="POST">
-        <input
-          class="form-control m-1"
-          type="text"
-          placeholder="Nombre."
-          name="name"
-          required
-        />
-        <input
-          class="form-control m-1"
-          type="text"
-          placeholder="Email."
-          name="username"
-          required
-        />
-        <input
-          class="form-control m-1"
-          type="password"
-          placeholder="Contraseña."
-          name="password"
-          required
-        />
-        <input
-          class="form-control m-1"
-          type="password"
-          placeholder="Repita la contraseña."
-          name="passwordCheck"
-          required
-        />
-        <input
-          class="form-control m-1"
-          type="text"
-          placeholder="Celular."
-          name="phone"
-          required
-        />
-        <input
-          class="form-control m-1"
-          type="text"
-          placeholder="Dirección para entregas."
-          name="address"
-          required
-        />
+        <input class="form-control m-1" type="text" placeholder="nombre" name="name" required/>
+        <input class="form-control m-1" type="text" placeholder="email" name="username" required/>
+        <input class="form-control m-1" type="password" placeholder="contraseña" name="password" required/>
+        <input class="form-control m-1" type="password" placeholder="repita la contraseña" name="passwordCheck" required/>
+        <input class="form-control m-1" type="text" placeholder="celular" name="phone" required />
+        <input class="form-control m-1" type="text" placeholder="direccion particular" name="address" required/>
         <button type="submit" class="m-1 btn btn-dark">Registrar</button>
       </form>
     </div>
     <div class="jumbotron flex-fill ml-1">
       <h1>Log-In</h1>
       <form action="/login" method="POST">
-        <input class="m-1 form-control" type="text" placeholder="Nombre." name="username" required/>
-        <input class="m-1 form-control" type="password" placeholder="Contraseña." name="password" required/>
+        <input class="m-1 form-control" type="text" placeholder="nombre" name="username" required/>
+        <input class="m-1 form-control" type="password" placeholder="contraseña" name="password" required/>
         <button type="submit" class="m-1 btn btn-dark">Inicio Sesion</button>
       </form>
     </div>
