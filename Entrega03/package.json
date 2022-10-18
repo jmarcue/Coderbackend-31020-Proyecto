@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "proyecto final 03",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js -e js,ejs,css,html"
@@ -20,7 +21,6 @@
     "express-session": "^1.17.3",
     "minimist": "^1.2.7",
     "mongoose": "^6.6.5",
-    "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.8.0",
     "passport": "^0.6.0",

@@ -11,7 +11,9 @@ import { engine } from 'express-handlebars';
 import { serverConfig } from './configs/server.config.js';
 import { __dirname, __dirJoin } from './utils/helper.util.js';
 import { handlebar } from './configs/handlebars.config.js';
-import { homeRoute } from './routes';
+import { 
+  homeRoute
+} from './routes';
 
 
 
@@ -55,7 +57,7 @@ app.set('view engine', 'hbs');
 app.set('views', __dirJoin(__dirname, '../views'));
 
 // router.
-app.use("/", home);
+app.use("/", homeRoute);
 //app.use('/api/productos', productRoute);
 //app.use('/api/carrito', cartRoute);
 
