@@ -1,12 +1,10 @@
 {{#if user}}
-
   <div class="jumbotron d-flex justify-content-between">
-    <h1>👽 {{this.user}}.</h1>
+    <h1>{{this.user}}.</h1>
     <form action="/logout" method="post">
       <button type="submit" class="btn btn-dark">Cerrar sesión</button>
     </form>
   </div>
-
   <div class="d-flex">
     <form action="/productos" method="get" class="mr-5">
       <button class="btn btn-dark">Productos</button>
@@ -19,7 +17,7 @@
 {{else}}
   <div class="d-flex justify-content-center">
     <div class="jumbotron flex-fill mr-1">
-      <h1>SignUp.</h1>
+      <h1>Sign-Up.</h1>
       <form action="/signup" method="POST">
         <input
           class="form-control m-1"
@@ -63,27 +61,15 @@
           name="address"
           required
         />
-        <button type="submit" class="m-1 btn btn-dark">REGISTRARSE</button>
+        <button type="submit" class="m-1 btn btn-dark">Registrar</button>
       </form>
     </div>
     <div class="jumbotron flex-fill ml-1">
-      <h1>LogIn.</h1>
+      <h1>Log-In</h1>
       <form action="/login" method="POST">
-        <input
-          class="m-1 form-control"
-          type="text"
-          placeholder="Nombre."
-          name="username"
-          required
-        />
-        <input
-          class="m-1 form-control"
-          type="password"
-          placeholder="Contraseña."
-          name="password"
-          required
-        />
-        <button type="submit" class="m-1 btn btn-dark">INICIAR SESIÓN</button>
+        <input class="m-1 form-control" type="text" placeholder="Nombre." name="username" required/>
+        <input class="m-1 form-control" type="password" placeholder="Contraseña." name="password" required/>
+        <button type="submit" class="m-1 btn btn-dark">Inicio Sesion</button>
       </form>
     </div>
   </div>
