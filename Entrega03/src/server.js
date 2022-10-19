@@ -6,7 +6,7 @@ import { engine } from 'express-handlebars';
 
 import { serverConfig } from './configs/server.config.js';
 import { sessionConfig } from './configs/session.config.js';
-import mongoConnect  from './configs/mongo.config.js';
+import { mongoConnect } from './configs/mongo.config.js';
 import { handlebar } from './configs/handlebars.config.js';
 import { __dirname, __dirJoin } from './utils/helper.util.js';
 import { logger } from './utils/winston.util.js';
@@ -20,7 +20,7 @@ const app = express();
 const PORT = serverConfig.PORT;
 
 // DB Connection.
-let mongo = new mongoConnect();
+await mongoConnect();
 
 // Middlewares
 app.use(express.json());
