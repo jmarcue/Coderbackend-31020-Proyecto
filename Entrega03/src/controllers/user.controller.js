@@ -1,16 +1,36 @@
 import { logger } from '../utils/winston.util.js';
-import userModel from '../models/user.model.js';
 
-class userController {
-  async findById(id) {
-    try {
-      const response = await userModel.findById(id);
-      return response || false;
-    } 
-    catch (error) {
-      logger.error(error)
-    }
+const signupFormController = (req, res) => {
+  return res.render('index');
+}
+
+const loginFormController = (req, res) => {
+  return res.render('loginSession');
+}
+
+const logoutController = (req, res) => {
+  if (req.user) {
+    userLogout = req.user.username;
+    res.render('logout', { userLogout });
+    req.session.destroy(err => {
+      if (!err) {
+        logger.info.info('logout successfully');
+      }
+      else {
+        logger.info.error('logout error');
+      }
+    });
   }
 }
 
-export default userController;
+const profileController = (req, res) => {
+  userLog = req.user;
+  res.render('profile', { userLog });
+};
+
+export {
+  signupFormController,
+  loginFormController,
+  logoutController,
+  profileController
+};

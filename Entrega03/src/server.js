@@ -39,7 +39,7 @@ app.set('views', __dirJoin(__dirname, '../views'));
 
 // router.
 app.use("/", generalRoute);
-//app.use('/api/productos', productRoute);
+//app.use('/api/products', productRoute);
 //app.use('/api/carrito', cartRoute);
 
 
