@@ -1,5 +1,5 @@
-import homeRoute from './home.route.js';
+import generalRoute from './general.route.js';
 
 export {
-  homeRoute
+  generalRoute
 }

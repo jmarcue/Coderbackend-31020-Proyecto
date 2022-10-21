@@ -9,6 +9,7 @@ const { port } = minimist(process.argv.slice(2), { alias: { "p": "port" }, defau
 export const serverConfig = {
   PORT: port || portDef,
   STORAGE: process.env.STORAGE,
+  STORAGE_TYPE: process.env.STORAGE_TYPE,
   MONGO_ATLAS: process.env.MONGO_ATLAS,
   MONGO_LOCAL: process.env.MONGO_LOCAL,
   MAILER_USER: process.env.NODEMAILER_USER,

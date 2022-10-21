@@ -3,11 +3,15 @@ import {  hash, unhash } from '../utils/bcrypt.util.js';
 
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({
-  name: { type: String, required: true },
-  phone: { type: String, required: true },
   username: { type: String, required: true },
   password: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  age: { type: Number, required: true },
   address: { type: String, required: true },
+  photo: { type: String, required: true },
+  cart: { type: Array, required: true },
+  admin: { type: Boolean, required: true }
 });
 
 UserSchema.methods.encryptPassword = async password => {
@@ -18,6 +22,6 @@ UserSchema.methods.checkPassword = async function (password) {
   return await unhash(password, this.password);
 }
 
-const userModel = mongoose.model('userModel', UserSchema, 'users');
+const userModel = mongoose.model('User', UserSchema);
 
 export default userModel;
