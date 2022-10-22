@@ -6,4 +6,4 @@ const orderSchema = new mongoose.Schema({
   ownerId: { type: Object, require: true }
 });
 
-export const orderModel = mongoose.model("Order", orderSchema);
+export const orderModel = mongoose.model('Order', orderSchema, 'order');

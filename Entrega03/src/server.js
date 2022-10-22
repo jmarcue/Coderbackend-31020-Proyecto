@@ -2,14 +2,21 @@ import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
-
 import { serverConfig } from './configs/server.config.js';
 import { sessionConfig } from './configs/session.config.js';
 import { mongoConnect } from './configs/mongo.config.js';
 import { __dirname, __dirJoin } from './utils/helper.util.js';
+import { isLogged } from './Middlewares/auth.middleware.js';
 import { logger } from './utils/winston.util.js';
 import { 
-  generalRoute
+  cartRoute,
+  generalRoute,
+  loginRoute,
+  logoutRoute,
+  singupRoute,
+  profileRoute,
+  orderRoute,
+  productRoute
 } from './routes/index.js';
 
 
@@ -38,9 +45,14 @@ app.set('views', __dirJoin(__dirname, '../views'));
 
 
 // router.
-app.use("/", generalRoute);
-//app.use('/api/products', productRoute);
-//app.use('/api/carrito', cartRoute);
+app.use('/', generalRoute);
+app.use('/api/product', isLogged, productRoute);
+app.use('/api/cart', isLogged, cartRoute);
+app.use('/api/order', isLogged, orderRoute);
+app.use('/login', loginRoute);
+app.use('/signup', singupRoute);
+app.use('/logout', isLogged, logoutRoute);
+app.use('/profile', isLogged, profileRoute);
 
 
 // server connection

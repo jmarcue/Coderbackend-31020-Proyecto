@@ -1,4 +1,5 @@
 import express from 'express';
+import { isLogged } from '../Middlewares/auth.middleware.js';
 import {
   homeController,
   signupController,
@@ -9,15 +10,7 @@ import {
 
 const router = express.Router();
 
-const isLogged = ((req, res, next) => {
-  let msgError = 'Para acceder a esta URL debe iniciar sesión';
-  if (req.user) {
-    next();
-  }
-  else {
-    return res.render('viewError', { msgError });
-  }
-});
+
 
 router.get('/', homeController);
 router.get('/signup', signupController);

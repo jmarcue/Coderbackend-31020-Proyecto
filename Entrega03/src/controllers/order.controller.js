@@ -12,7 +12,7 @@ const createOrdenController = async (req, res) => {
     const userId = req.body.idUser;
     const order = await storage.createOrder(userId);
 
-    sentMail(userLog, order);
+    orderSendMail(userLog, order);
     //sendSms(`Su pedido ha sido recibido y se encuentra en proceso`, `+14057251618`, `+59894057052`);
     //auxWhatsApp(userLog, orden);
 
@@ -29,7 +29,7 @@ const viewOrderController = (req, res) => {
   return res.send('viewOrder');
 }
 
-const sentMail = async (userLog, order) => {
+const orderSendMail = async (userLog, order) => {
   let orderDetail = '';
 
   order.products.forEach(element => {
@@ -58,11 +58,11 @@ const sentMail = async (userLog, order) => {
     `
   };
   const email = await sendMail(mailOptions);
-  logger.info.error('sentMail:::' + email);
+  logger.info.error('orderSendMail:::' + email);
 }
 
 const auxWhatsApp = async (userLog, order) => {
-  let orderDetail = ``;
+  let orderDetail = '';
 
   order.products.forEach(element => {
     orderDetail +=
@@ -81,7 +81,7 @@ const auxWhatsApp = async (userLog, order) => {
     Pedido:
     ${orderDetail}
     `;
-  await sendWhatsApp(body, `whatsapp:+14155238886`, `whatsapp:+59894057052`);
+  await sendWhatsApp(body, 'whatsapp:+', 'whatsapp:+');
 }
 
 export {

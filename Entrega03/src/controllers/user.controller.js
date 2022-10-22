@@ -5,7 +5,7 @@ const signupFormController = (req, res) => {
 }
 
 const loginFormController = (req, res) => {
-  return res.render('loginSession');
+  return res.render('login');
 }
 
 const logoutController = (req, res) => {

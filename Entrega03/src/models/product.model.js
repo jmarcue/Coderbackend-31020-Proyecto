@@ -10,4 +10,6 @@ const productSchema = new mongoose.Schema({
   quantity: { type: Number }  
 });
 
-export const productModel = mongoose.model("Product", productSchema);
+const productModel = mongoose.model('Product', productSchema, 'product');
+
+export { productModel }

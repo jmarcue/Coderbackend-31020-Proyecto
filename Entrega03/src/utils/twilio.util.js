@@ -1,11 +1,10 @@
 import twilio from "twilio";
-
 import { serverConfig } from '../configs/server.config.js';
 import { logger } from './winston.util.js';
 
-var accountSid = process.env.TWILIO_SID;
-var authToken = process.env.TWILIO_TOKEN;
-var whatsappNumber = process.env.TWILIO_WHATSAPP;
+var accountSid = serverConfig.TWILIO_SID;
+var authToken = serverConfig.TWILIO_TOKEN;
+var whatsappNumber = serverConfig.TWILIO_WHATSAPP;
 
 const client = twilio(accountSid, authToken, {
     lazyLoading: true

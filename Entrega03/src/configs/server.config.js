@@ -16,6 +16,7 @@ export const serverConfig = {
   MAILER_PASS: process.env.NODEMAILER_PASS,
   MAILER_HOST: process.env.NODEMAILER_HOST,
   MAILER_PORT: process.env.NODEMAILER_PORT,
+  MAILER_USER_TO: process.env.NODEMAILER_USER_TO,
   TWILIO_SID: process.env.TWILIO_ACCOUNT_SID,
   TWILIO_TOKEN: process.env.TWILIO_AUTH_TOKEN,
   TWILIO_WHATSAPP: process.env.TWILIO_WHATSAPP_NUMBER,

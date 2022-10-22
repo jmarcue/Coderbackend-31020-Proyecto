@@ -7,7 +7,7 @@ const signupController = (req, res) => {
 }
 
 const welcomeController = (req, res) => {
-  userLog = req.user;
+  const userLog = req.user;
   return res.render('welcome', { userLog });
 }
 
@@ -16,8 +16,8 @@ const formAddProductController = (req, res) => {
 }
 
 const errorController = (req, res) => {
-  msgError = req.params.msg;
-  return res.render('viewError');
+  const msgError = req.params.msg;
+  return res.render('viewError', { msgError });
 }
 
 export {

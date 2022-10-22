@@ -22,6 +22,7 @@ UserSchema.methods.checkPassword = async function (password) {
   return await unhash(password, this.password);
 }
 
-const userModel = mongoose.model('User', UserSchema);
+const userModel = mongoose.model('User', UserSchema, 'user');
 
-export default userModel;
+//export default userModel;
+export { userModel }

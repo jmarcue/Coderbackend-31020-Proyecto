@@ -17,10 +17,10 @@ const transporter = nodemailer.createTransport({
 const sendMail = async (options) => {
   try {
     const response = await transporter.sendMail(options);
-    logger.info.info('sendMail:::' + response);   
+    logger.info.info('sendMail::: ' + response);   
   }
   catch (error) {
-    logger.info.error('sendMail:::' + error);     
+    logger.info.error('sendMail::: ' + error);     
   }
 }
 

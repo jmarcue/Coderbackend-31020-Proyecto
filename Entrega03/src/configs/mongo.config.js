@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-
 import { serverConfig } from './server.config.js';
 import { logger } from '../utils/winston.util.js';
 
-export const mongoConnect = async () => {
+const mongoConnect = async () => {
+  console.log(serverConfig.STORAGE);
   if (serverConfig.STORAGE == 'local') {
     const uri = serverConfig.MONGO_LOCAL;
     const options = { useNewUrlParser: true, useUnifiedTopology: true }
@@ -13,7 +13,7 @@ export const mongoConnect = async () => {
   }
   else if (serverConfig.STORAGE == 'cloud') {
     const uri = serverConfig.MONGO_ATLAS;      
-    const options = { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
+    const options = { useNewUrlParser: true, useUnifiedTopology: true }
     await mongoose.connect(uri, options).then(
       ()  => { logger.info.info(`Conectado a MongoDB Cloud`) },
       err => { logger.info.error(`Ocurrió un error al conectarse a la base de datos de mongodb: ${err}`) }
@@ -23,3 +23,5 @@ export const mongoConnect = async () => {
     logger.info.error('ingresar parametro base datos');
   }
 };
+
+export { mongoConnect }

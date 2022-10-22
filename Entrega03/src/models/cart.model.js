@@ -6,4 +6,6 @@ const cartSchema = new mongoose.Schema({
   owner: { type: Object, require: true }
 });
 
-export const cartModel = mongoose.model("Cart", cartSchema);
+const cartModel = mongoose.model('Cart', cartSchema, 'cart');
+
+export { cartModel }
