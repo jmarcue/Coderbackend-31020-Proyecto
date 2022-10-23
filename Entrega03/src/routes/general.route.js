@@ -15,7 +15,7 @@ const router = express.Router();
 router.get('/', homeController);
 router.get('/signup', signupController);
 router.get('/welcome', isLogged, welcomeController);
-router.get('/formAddProduct', isLogged, formAddProductController);
+router.get('/add-product', isLogged, formAddProductController);
 router.get('/error/:msg', errorController);
 
 export default router;

@@ -8,7 +8,8 @@ import { userModel } from '../models/user.model.js';
 
 const serializeUser = () => {
   passport.serializeUser((user, done) => {
-      done(null, user._id);
+    console.log(user._id);  
+    done(null, user._id);
   });
 }
 
@@ -86,7 +87,7 @@ const login = () => {
       if (!user) {
         return done(null, false);
       }
-      const matchPassword = await user.checkPassword(user.password, password);
+      const matchPassword = await user.checkPassword(password);
       if (!matchPassword) {
         return done(null, false);
       }

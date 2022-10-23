@@ -13,7 +13,7 @@ deserializeUser();
 router.get('/', loginFormController);
 router.post('/', passport.authenticate('login', {
     successRedirect: '/welcome',
-    failureRedirect: '/error/Error al iniciar sesión usuario contraseña incorrecta',
+    failureRedirect: '/error/Error: usuario o contraseña incorrecta',
     failureFlash: true
 }));
 

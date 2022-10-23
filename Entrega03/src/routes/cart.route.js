@@ -10,7 +10,7 @@ import {
 
 const router = express.Router();
 
-router.get('/:id/productos', getAllProductsByIdCart);
+router.get('/:id/products', getAllProductsByIdCart);
 router.get('/', viewCart);
 router.post('/', createCart);
 router.post('/addProduct', addProductToCart);

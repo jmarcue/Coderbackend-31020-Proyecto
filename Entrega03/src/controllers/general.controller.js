@@ -12,7 +12,7 @@ const welcomeController = (req, res) => {
 }
 
 const formAddProductController = (req, res) => {
-  return res.render('productsAdmin');
+  return res.render('product-admin');
 }
 
 const errorController = (req, res) => {

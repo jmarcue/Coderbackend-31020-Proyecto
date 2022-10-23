@@ -10,10 +10,10 @@ const loginFormController = (req, res) => {
 
 const logoutController = (req, res) => {
   if (req.user) {
-    userLogout = req.user.username;
+    const userLogout = req.user.username;
     res.render('logout', { userLogout });
-    req.session.destroy(err => {
-      if (!err) {
+    req.session.destroy(error => {
+      if (!error) {
         logger.info.info('logout successfully');
       }
       else {
@@ -24,7 +24,7 @@ const logoutController = (req, res) => {
 }
 
 const profileController = (req, res) => {
-  userLog = req.user;
+  const userLog = req.user;
   res.render('profile', { userLog });
 };
 

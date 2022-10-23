@@ -31,8 +31,10 @@ await mongoConnect();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(__dirJoin(__dirname, './public')));
-app.use(express.static(__dirJoin(__dirname, './files')));
+// statics
+app.use(express.static(__dirJoin(__dirname, '../public')));
+app.use('/uploads', express.static(__dirJoin(__dirname, '../public/uploads')));
+//app.use(express.static(__dirJoin(__dirname, './files')));
 
 app.use(cookieParser());
 app.use(session(sessionConfig));
@@ -51,9 +53,17 @@ app.use('/api/cart', isLogged, cartRoute);
 app.use('/api/order', isLogged, orderRoute);
 app.use('/login', loginRoute);
 app.use('/signup', singupRoute);
-app.use('/logout', isLogged, logoutRoute);
 app.use('/profile', isLogged, profileRoute);
+app.use('/logout', isLogged, logoutRoute);
+app.use((req, res) => {
+  logger.info.error(`
+  State: 404
+  Path url: ${req.originalUrl}
+  Method: ${req.method}`);
+  const msgError = `State: 404, Path url: ${req.originalUrl}, Method ${req.method}`;
 
+  res.render('viewError', {msgError});
+});
 
 // server connection
 const server = app.listen(PORT, () => {
