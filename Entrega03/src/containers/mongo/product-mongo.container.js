@@ -47,8 +47,6 @@ class productMongoContainer {
 
   async save(product) {
     product = new this.productModel(product);
-    console.log(product);
-
     this.mongo
       .then(_ => product.save())
       .then(document => document)

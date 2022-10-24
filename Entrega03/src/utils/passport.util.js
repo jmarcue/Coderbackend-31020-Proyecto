@@ -8,7 +8,6 @@ import { userModel } from '../models/user.model.js';
 
 const serializeUser = () => {
   passport.serializeUser((user, done) => {
-    console.log(user._id);  
     done(null, user._id);
   });
 }
