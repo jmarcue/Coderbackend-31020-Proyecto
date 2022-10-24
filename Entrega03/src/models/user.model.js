@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 import {  hash, unhash } from '../utils/bcrypt.util.js';
 
-const Schema = mongoose.Schema;
-const UserSchema = new Schema({
+const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
   email: { type: String, required: true },
@@ -14,15 +13,15 @@ const UserSchema = new Schema({
   admin: { type: Boolean, required: true }
 });
 
-UserSchema.methods.encryptPassword = async password => {
+userSchema.methods.encryptPassword = async password => {
   return await hash(password);
 }
 
-UserSchema.methods.checkPassword = async function (password) {
+userSchema.methods.checkPassword = async function (password) {
   return await unhash(password, this.password);
 }
 
-const userModel = mongoose.model('User', UserSchema, 'user');
+const userModel = mongoose.model('User', userSchema, 'user');
 
 //export default userModel;
 export { userModel }

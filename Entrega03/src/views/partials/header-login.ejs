@@ -6,21 +6,21 @@
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item  %> ">
             <a class="nav-link" href="/api/product">Productos</a>
-          </li>
+          </li>          
           <% if(userLog.admin) { %>
             <li class="nav-item   %> ">
               <a class="nav-link" href="/add-product">Agregar Producto</a>
             </li>
           <% } %>
-            <li class="nav-item  %> ">
-              <a class="nav-link" href="/api/cart">Carrito</a>
-            </li>
-            <li class="nav-item   %> ">
-              <a class="nav-link" href="/profile">Perfil [<%= userLog.username %>]</a>
-            </li>
-            <li class="nav-item  %> ">
-              <a class="nav-link" href="/logout">Salir</a>
-            </li>
+          <li class="nav-item  %> ">
+            <a class="nav-link" href="/api/cart">Carrito</a>
+          </li>
+          <li class="nav-item   %> ">
+            <a class="nav-link" href="/profile">Perfil [<%= userLog.username %>]</a>
+          </li>
+          <li class="nav-item  %> ">
+            <a class="nav-link" href="/logout">Salir</a>
+          </li>
         </ul>
       </div>
     </div>

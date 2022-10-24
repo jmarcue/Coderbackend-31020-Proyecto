@@ -7,7 +7,7 @@ const isLogged = ((req, res, next) => {
   }
   else {
     logger.info.error('auth::: ' + msgError);
-    return res.render('viewError', { msgError });
+    return res.render('error-view', { msgError });
   }
 });
 

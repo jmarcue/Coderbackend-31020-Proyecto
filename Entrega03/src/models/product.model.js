@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
+  timestamp: { type: Date, required: true },
   name: { type: String, required: true },
   description: { type: String, required: true },
   code: { type: String, required: true },

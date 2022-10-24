@@ -4,7 +4,6 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import { serverConfig } from './configs/server.config.js';
 import { sessionConfig } from './configs/session.config.js';
-import { mongoConnect } from './configs/mongo.config.js';
 import { __dirname, __dirJoin } from './utils/helper.util.js';
 import { isLogged } from './Middlewares/auth.middleware.js';
 import { logger } from './utils/winston.util.js';
@@ -19,13 +18,9 @@ import {
   productRoute
 } from './routes/index.js';
 
-
 // Server 
 const app = express();
 const PORT = serverConfig.PORT;
-
-// DB Connection.
-await mongoConnect();
 
 // Middlewares
 app.use(express.json());
@@ -45,16 +40,15 @@ app.use(passport.session());
 app.set('view engine', 'ejs');
 app.set('views', __dirJoin(__dirname, '../views'));
 
-
 // router.
 app.use('/', generalRoute);
 app.use('/api/product', isLogged, productRoute);
 app.use('/api/cart', isLogged, cartRoute);
 app.use('/api/order', isLogged, orderRoute);
-app.use('/login', loginRoute);
-app.use('/signup', singupRoute);
 app.use('/profile', isLogged, profileRoute);
 app.use('/logout', isLogged, logoutRoute);
+app.use('/login', loginRoute);
+app.use('/signup', singupRoute);
 app.use((req, res) => {
   logger.info.error(`
   State: 404
@@ -62,7 +56,7 @@ app.use((req, res) => {
   Method: ${req.method}`);
   const msgError = `State: 404, Path url: ${req.originalUrl}, Method ${req.method}`;
 
-  res.render('viewError', {msgError});
+  res.render('error-view', {msgError});
 });
 
 // server connection

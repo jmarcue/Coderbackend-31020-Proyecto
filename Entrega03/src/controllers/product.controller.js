@@ -5,11 +5,14 @@ const storage = Storage().product;
 
 const getAllProducts = async(req, res) => {
   try {
-    let allProducts = await storage.getAll();
+    const userLog = req.user;
+    const allProducts = await storage.getAll();
+    return res.render('product', { allProducts, userLog });
+
     return res.json(allProducts);
   }
   catch(err) {
-    const msgError = `Codigo error: ${err.code} | Error al obtener todos los productos${err}`; 
+    const msgError = `Error al obtener todos los productos${err}`; 
     logger.info.error(msgError);      
     return res.status(404).json({ error: msgError });
   }
@@ -26,7 +29,7 @@ const getProductById = async(req, res) => {
       return res.status(404).json({ error: msgError });
     }
     else {
-      return res.json(productbyId);
+      return res.render('productById', { productbyId });
     }
   }
   catch (err) {
@@ -37,55 +40,73 @@ const getProductById = async(req, res) => {
 }
 
 const addProduct = async(req, res) => {
-  try {
-    const date = new Date().toDateString();
-    const title = req.body.title;
-    const code = req.body.code;
-    const description = req.body.description;
-    const price = Number(req.body.price);
-    const stock = Number(req.body.stock);
-    const thumbnail = req.body.thumbnail;
-    
-    const newProduct = {
-      timestamp: date,
-      title: `${title}`,
-      code: code,
-      description: `${description}`,
-      price: price,
-      stock: stock,
-      thumbnail: `${thumbnail}`
-    };
-
-    const id = await storage.save(newProduct);
-
-    return res.json(`Se agrego el producto: ${id}`);
-  }
-  catch(err) {
-    const msgError = `Codigo error: ${err.code} | Error al crear un producto: ${err}`; 
-    logger.info.error(msgError);     
-    return res.status(404).json({ error: msgError });
-  }
+  const userLog = req.user;
+  if (userLog.admin) {
+    try {
+      const date = new Date().toDateString();
+      const name = req.body.name;
+      const code = req.body.code;
+      const description = req.body.description;
+      const price = Number(req.body.price);
+      const stock = Number(req.body.stock);
+      const thumbnail = req.body.thumbnail;
+      
+      const newProduct = {
+        timestamp: date,
+        name: `${name}`,
+        code: `${code}`,
+        description: `${description}`,
+        price: price,
+        stock: stock,
+        thumbnail: `${thumbnail}`
+      };
+  
+      const id = await storage.save(newProduct);
+      logger.info.info(`producto creado: ${id}`);   
+      return res.redirect('/api/product');      
+    }
+    catch(error) {
+      const msgError = `Error al crear producto: ${error}`; 
+      logger.info.error(msgError);     
+      return res.status(404).json({ error: msgError });
+    }
+  }  
+  else {
+    return res.status(404).json({
+      error: `Ruta no permitida, no es usuario con perfil administrador.`
+    });
+  }  
 }
 
 const updateProductById = async(req, res) => {
-  try {
-    const idProduct = req.params.id;
-    const date = new Date().toDateString();
-    const title = req.body.title;
-    const code = Number(req.body.code);
-    const description = req.body.description;
-    const price = Number(req.body.price);
-    const stock = Number(req.body.stock);    
-    const thumbnail = req.body.thumbnail;
-    
-    await storage.updateById(idProduct, date, title, code, description, price, stock, thumbnail);
-    return res.json('Se actualizó el producto');
-  }
-  catch (err) {
-    const msgError = `Codigo error: ${err.code} | Error al actualizar un producto ${err}`; 
-    logger.info.error(msgError); 
-    return res.status(404).json({ error: msgError });
-  }
+  const userLog = req.user;
+  if (userLog.admin) {  
+    try {
+      const idProduct = req.params.id;
+      const date = new Date().toDateString();
+      const name = req.body.name;
+      const code = Number(req.body.code);
+      const description = req.body.description;
+      const price = Number(req.body.price);
+      const stock = Number(req.body.stock);    
+      const thumbnail = req.body.thumbnail;
+      
+      await storage.updateById(idProduct, date, name, code, description, price, stock, thumbnail);
+
+      logger.info.info(`ctualizó el producto: ${idProduct}`);   
+      return res.redirect('/api/product');  
+    }
+    catch (err) {
+      const msgError = `Codigo error: ${err.code} | Error al actualizar un producto ${err}`; 
+      logger.info.error(msgError); 
+      return res.status(404).json({ error: msgError });
+    }  
+  }  
+  else {
+    return res.status(404).json({
+      error: `Ruta no permitida, no es usuario con perfil administrador.`
+    });
+  }   
 }
 
 const deleteProductById = async(req, res) => {

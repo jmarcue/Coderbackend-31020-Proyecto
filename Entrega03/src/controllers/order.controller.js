@@ -16,7 +16,7 @@ const createOrdenController = async (req, res) => {
     //sendSms(`Su pedido ha sido recibido y se encuentra en proceso`, `+14057251618`, `+59894057052`);
     //auxWhatsApp(userLog, orden);
 
-    return res.render(`compraFinalizada`);
+    return res.render('order-final', { userLog });
   } 
   catch (err) {
     const msgError = `Error al crear el la orden ${err}`;

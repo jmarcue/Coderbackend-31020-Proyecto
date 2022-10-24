@@ -3,7 +3,7 @@ class cartMongoContainer {
     this.mongo = mongo;
     this.cartModel = cartModel;
     this.productModel = productModel;
-    this.userModel = userModel
+    this.userModel = userModel;
   }
 
   async createCart() {
@@ -37,8 +37,8 @@ class cartMongoContainer {
     let isDuplicate = false;
     let newCart = [];
 
-    docUser = await this.userModel.findOne({ _id: idUser }, { __v: 0 });
-    docProduct = await this.productsModel.findOne({ _id: idProduct }, { __v: 0 });
+    docUser = await this.userModel.findOne({ _id: idUser }, { __v: 0 });   
+    docProduct = await this.productModel.findOne({ _id: idProduct }, { __v: 0 });
 
     if (docUser && docProduct) {
       if (docUser.cart.length == 0) {

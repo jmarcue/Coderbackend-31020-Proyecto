@@ -12,12 +12,13 @@ const welcomeController = (req, res) => {
 }
 
 const formAddProductController = (req, res) => {
-  return res.render('product-admin');
+  const userLog = req.user;
+  return res.render('product-admin', { userLog });
 }
 
 const errorController = (req, res) => {
   const msgError = req.params.msg;
-  return res.render('viewError', { msgError });
+  return res.render('error-view', { msgError });
 }
 
 export {

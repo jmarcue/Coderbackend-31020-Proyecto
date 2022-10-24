@@ -22,7 +22,7 @@ class orderMongoContainer {
         ownerId: ownerId
       };
       await docUser.save();
-      const order = new this.ordenModel(orderNew);
+      const order = new this.orderModel(orderNew);
       this.mongo
         .then(_ => order.save())
         .then(document => console.log(document))

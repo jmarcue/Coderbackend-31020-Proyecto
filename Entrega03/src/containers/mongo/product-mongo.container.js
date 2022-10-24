@@ -23,7 +23,7 @@ class productMongoContainer {
   async getById(id) {
     try {
       let doc = false;
-      doc = await this.productsModel.findOne({ _id: id }, { __v: 0 });
+      doc = await this.productModel.findOne({ _id: id }, { __v: 0 });
       
       if (doc) {
         return doc;
@@ -39,7 +39,7 @@ class productMongoContainer {
 
   async deleteById(id) {
     this.mongo
-      .then(_ => this.productsModel.deleteOne({
+      .then(_ => this.productModel.deleteOne({
           _id: id
       }))
       .catch(err => console.log(`Error: ${err.message}`));
@@ -47,22 +47,25 @@ class productMongoContainer {
 
   async save(product) {
     product = new this.productModel(product);
+    console.log(product);
+
     this.mongo
       .then(_ => product.save())
       .then(document => document)
       .catch(err => console.log(`Error: ${err.message}`));
   }
 
-  async updateById(id, name, description, code, thumbnail, price, stock) {
+  async updateById(id, date, name, code, description, price, stock, thumbnail) {
     this.mongo
-      .then(_ => this.productsModel.findOne({ _id: id }, { __v: 0 }))
+      .then(_ => this.productModel.findOne({ _id: id }, { __v: 0 }))
       .then(product => {
+        product.timestamp = date;
         product.name = name;
         product.description = description;
         product.code = code; 
-        product.thumbnail = thumbnail;
         product.price = price;
         product.stock = stock;
+        product.thumbnail = thumbnail;
 
         return product.save();
       })

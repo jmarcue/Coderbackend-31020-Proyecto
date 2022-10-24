@@ -3,7 +3,7 @@ import { productModel } from "../../models/product.model.js";
 import productMongoContainer from "../../containers/mongo/product-mongo.container.js";
 
 class productMongoDao extends productMongoContainer {
-  constructor() {
+  constructor() {    
     super(mongoConnect, productModel);
   };
 };

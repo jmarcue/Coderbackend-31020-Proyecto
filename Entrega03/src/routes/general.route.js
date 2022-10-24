@@ -10,8 +10,6 @@ import {
 
 const router = express.Router();
 
-
-
 router.get('/', homeController);
 router.get('/signup', signupController);
 router.get('/welcome', isLogged, welcomeController);

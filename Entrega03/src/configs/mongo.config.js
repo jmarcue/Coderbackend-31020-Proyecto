@@ -2,8 +2,13 @@ import mongoose from 'mongoose';
 import { serverConfig } from './server.config.js';
 import { logger } from '../utils/winston.util.js';
 
+const uri = serverConfig.STORAGE == 'cloud' ? serverConfig.MONGO_ATLAS: serverConfig.MONGO_LOCAL;
+const options = { useNewUrlParser: true, useUnifiedTopology: true };
+
+export const mongoConnect = mongoose.connect(uri, options);
+
+/*
 const mongoConnect = async () => {
-  console.log(serverConfig.STORAGE);
   if (serverConfig.STORAGE == 'local') {
     const uri = serverConfig.MONGO_LOCAL;
     const options = { useNewUrlParser: true, useUnifiedTopology: true }
@@ -25,3 +30,4 @@ const mongoConnect = async () => {
 };
 
 export { mongoConnect }
+*/

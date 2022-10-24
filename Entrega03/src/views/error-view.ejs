@@ -9,14 +9,14 @@
   </head>
   <body>
     <header>
-      <%- include('./partials/header-login', {current: '#'}) %>
+      <%- include('./partials/header', {current: `#`}) %>
     </header>
     <div class="jumbotron">
       <main>
         <div class="jumbotron">
-          <h1 class="display-4">Bienvenido...</h1>
+          <h1 class="display-4">Error</h1>
           <p>
-            <%= userLog.username %>
+            <%= msgError %>
           </p>
         </div>
       </main>
