@@ -5,6 +5,7 @@ import { logger } from './winston.util.js';
 const transporter = nodemailer.createTransport({
   host: serverConfig.MAILER_HOST,
   port: serverConfig.MAILER_PORT,
+  secure: true, // use TLS
   auth: {
     user: serverConfig.MAILER_USER,
     pass: serverConfig.MAILER_PASS,
@@ -13,6 +14,7 @@ const transporter = nodemailer.createTransport({
     rejectUnauthorized: false
   }
 });
+
 
 const sendMail = async (options) => {
   try {
