@@ -29,7 +29,7 @@ const getProductById = async(req, res) => {
       return res.status(404).json({ error: msgError });
     }
     else {
-      return res.render('productById', { productbyId });
+      return res.render('product-by-id', { productById });
     }
   }
   catch (err) {
@@ -61,9 +61,10 @@ const addProduct = async(req, res) => {
         thumbnail: `${thumbnail}`
       };
   
-      const id = await storage.save(newProduct);
-      logger.info.info(`producto creado: ${id}`);   
-      return res.redirect('/api/product');      
+      await storage.save(newProduct);
+
+      logger.info.info(`producto creado`);   
+      return res.redirect(`/api/product`);      
     }
     catch(error) {
       const msgError = `Error al crear producto: ${error}`; 

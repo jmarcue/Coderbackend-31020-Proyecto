@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 // statics
 app.use(express.static(__dirJoin(__dirname, '../public')));
 app.use('/uploads', express.static(__dirJoin(__dirname, '../public/uploads')));
-//app.use(express.static(__dirJoin(__dirname, './files')));
+app.use('/favicon.ico', express.static(__dirJoin(__dirname, '../public/favicon.ico')));
 
 app.use(cookieParser());
 app.use(session(sessionConfig));
@@ -41,6 +41,12 @@ app.set('view engine', 'ejs');
 app.set('views', __dirJoin(__dirname, '../views'));
 
 // router.
+app.use((req, res, next) => {
+  logger.info.info(`
+  Path url: ${req.originalUrl}
+  Method: ${req.method}`);
+  next();
+});
 app.use('/', generalRoute);
 app.use('/api/product', isLogged, productRoute);
 app.use('/api/cart', isLogged, cartRoute);
@@ -54,10 +60,11 @@ app.use((req, res) => {
   State: 404
   Path url: ${req.originalUrl}
   Method: ${req.method}`);
+  
   const msgError = `State: 404, Path url: ${req.originalUrl}, Method ${req.method}`;
-
   res.render('error-view', {msgError});
 });
+
 
 // server connection
 const server = app.listen(PORT, () => {

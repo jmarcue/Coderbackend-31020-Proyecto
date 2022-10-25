@@ -74,15 +74,16 @@ const deleteCartById = async(req, res) => {
 const deleteProductById = async(req, res) => {
   try {
     let idUser = req.body.idUser;
-    let idProduct = req.params.idProduct;
-
+    let idProduct = req.body.idProduct;
+    
     await storage.deleteProductById(idUser, idProduct);
     return res.redirect('/api/cart');
   }
   catch(err) {
     const msgError = `Error al eliminar un producto específico de un carrito ${err}`; 
     logger.info.error(msgError);            
-    return res.status(404).json({ error: msgError });
+    
+    return res.render('error-view', {msgError});
   }
 };
 
