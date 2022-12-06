@@ -11,4 +11,3 @@ class orderMongoDao extends orderMongoContainer {
 };
 
 export default orderMongoDao;
-

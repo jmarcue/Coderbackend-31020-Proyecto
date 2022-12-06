@@ -96,11 +96,7 @@ class cartMongoContainer {
             products.push(element);
         }
       })        
-      /*for (let i = 0; i <= allProducts.length - 1; i++) {
-          if (allProducts[i]._id.toString() != docProduct._id.toString()) {
-              products.push(allProducts[i]);
-          }
-      }*/
+
       docUser.cart = [];
       await docUser.save();
       docUser.cart = products;
